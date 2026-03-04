@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+.pytest_cache/
+venv/
+env/
+.venv/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# PyInstaller
+build/
+dist/
+*.spec
+
+# Tool output
+collected_artifacts/
+quick_collect/
+*.zip
+report.json
+*_report.json
+timecop_report*.json
+
+# Logs / temp
+*.log
+_review*.md
+_imgs/
+
+# Reports / presentation source files
+make_report_pdf.py
+make_presentation.py
+*.pptx
+*.docx
+*.pdf
+
+# Large MFT exports
+mft_full*.csv
+linux_fs_full*.csv
