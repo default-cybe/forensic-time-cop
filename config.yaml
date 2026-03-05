@@ -1,0 +1,83 @@
+# Forensic Time Cop: Rule Configuration
+# Investigators can adjust scores, thresholds, and enable/disable rules here.
+
+rules:
+  si_fn_mismatch:
+    enabled: true
+    score: 40
+
+  zeroed_nanoseconds:
+    enabled: true
+    score: 30
+    # Only flag files in user-writable paths to reduce false positives
+    user_paths_only: true
+
+  birthtime_mtime_gap:
+    enabled: true
+    score: 35
+    # Minimum gap in seconds to flag
+    min_gap_seconds: 3600
+
+  log_clearing:
+    enabled: true
+    score: 50
+
+  clock_jump:
+    enabled: true
+    score: 45
+    # Minimum backward jump in minutes to flag
+    min_jump_minutes: 5
+
+  record_sequence_gap:
+    enabled: true
+    score: 45
+    # Minimum gap in record IDs to flag
+    min_gap: 5
+
+  system_time_change:
+    enabled: true
+    score: 40
+
+  # Linux rules (for auditd / syslog analysis)
+  touch_command:
+    enabled: true
+    score: 35
+
+  utimes_syscall:
+    enabled: true
+    score: 40
+
+  linux_clock_change:
+    enabled: true
+    score: 45
+
+# Scan settings
+scan:
+  # Paths to exclude from MFT analysis (case-insensitive)
+  exclude_paths:
+    - Windows
+    - Program Files
+    - Program Files (x86)
+    - AppData
+    - ProgramData
+    - System32
+    - SysWOW64
+
+  # Paths to focus on in targeted scan (leave empty to scan all non-excluded)
+  target_paths: []
+
+# Severity thresholds
+severity:
+  high: 70
+  medium: 40
+
+# Custom rules, investigators can add simple pattern-matching rules
+# Each rule matches a column in the MFT CSV against a regex pattern.
+custom_rules: []
+# Example:
+# - name: "Suspicious EXE in Temp"
+#   description: "EXE file found in temp directory with old timestamp"
+#   type: mft
+#   column: ParentPath
+#   pattern: "Temp"
+#   score: 30
