@@ -1,0 +1,12 @@
+Apr 16 10:00:01 forensic-host systemd[1]: Started session 1
+Apr 16 10:01:15 forensic-host sudo: attacker : TTY=pts/0 ; PWD=/tmp ; USER=root ; COMMAND=/bin/date -s "2020-01-01 00:00:00"
+Apr 16 10:01:16 forensic-host kernel: settimeofday called from process 1234
+Jan  1 00:00:01 forensic-host systemd[1]: Started session 2
+Jan  1 00:00:05 forensic-host sudo: attacker : TTY=pts/0 ; PWD=/tmp ; USER=root ; COMMAND=/usr/bin/touch -t 202001010000 /tmp/forensic_test/backdated.txt
+Jan  1 00:00:10 forensic-host sudo: attacker : TTY=pts/0 ; PWD=/tmp ; USER=root ; COMMAND=/usr/bin/touch -t 201906150800 /tmp/forensic_test/suspicious.bin
+Jan  1 00:05:22 forensic-host sudo: attacker : TTY=pts/0 ; PWD=/tmp ; USER=root ; COMMAND=/usr/bin/touch -d "2021-03-15 08:30:00" /tmp/forensic_test/.secret_config
+Apr 16 10:05:30 forensic-host kernel: settimeofday called from process 1234
+Apr 16 10:05:31 forensic-host systemd[1]: Time restored to normal
+Apr 16 10:10:00 forensic-host systemd[1]: logrotate.service: Deactivated successfully.
+Apr 16 10:15:00 forensic-host CRON[5678]: (root) CMD (test -x /usr/sbin/anacron)
+Apr 16 10:20:00 forensic-host sshd[9012]: Accepted publickey for user from 192.168.1.100
